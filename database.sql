@@ -1,0 +1,14 @@
+CREATE TABLE Users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(50),
+  password VARCHAR(50)
+);
+
+INSERT INTO Users VALUES (1, 'teja', '1234');
+
+DELIMITER //
+CREATE PROCEDURE sp_CheckLogin(IN u VARCHAR(50), IN p VARCHAR(50))
+BEGIN
+  SELECT * FROM Users WHERE username = u AND password = p;
+END //
+DELIMITER ;

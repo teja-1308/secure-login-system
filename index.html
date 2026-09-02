@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style> body{font-family:sans-serif;text-align:center;margin-top:80px} input,button{padding:10px;margin:5px} </style>
+</head>
+<body>
+<h2>Secure Login System</h2>
+<p>Stigmata Interview Project</p>
+<input id="user" placeholder="Username: teja"><br>
+<input id="pass" type="password" placeholder="Password: 1234"><br>
+<button id="loginBtn">Login</button>
+<p id="msg"></p>
+<script>
+$("#loginBtn").click(function(){
+  let u=$("#user").val(), p=$("#pass").val();
+  if(u==""||p==""){ $("#msg").text("Enter both fields").css("color","red"); return; }
+  $.ajax({
+    url:"http://localhost:3000/api/login",
+    method:"POST",
+    contentType:"application/json",
+    data:JSON.stringify({username:u,password:p}),
+    success:function(res){ $("#msg").text(res.msg).css("color","green"); }
+  });
+});
+</script>
+</body>
+</html>
